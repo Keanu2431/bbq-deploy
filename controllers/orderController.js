@@ -99,16 +99,16 @@ exports.getCheckout = async (req, res, next) => {
     //   max_redemptions: 10,
     //   //   redeem_by: null,
     // });
-
-    // promo codes
+    //
+    // // promo codes
     // const PRE_10 = await stripe.promotionCodes.create({
     //   coupon: '10OFF',
     //   code: 'BQM10',
-    //   //   restrictions: {
-    //   //     first_time_transaction: true,
-    //   //     minimum_amount: 30,
-    //   //     minimum_amount_currency: 'usd',
-    //   //   },
+    //     restrictions: {
+    //       first_time_transaction: true,
+    //       minimum_amount: null,
+    //       minimum_amount_currency: null,
+    //     },
     // });
     // create check out
     const order_number_generated = Math.floor(
