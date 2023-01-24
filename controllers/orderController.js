@@ -144,11 +144,6 @@ exports.getCheckout = async (req, res, next) => {
       payment_method_types: ['card'],
       mode: 'payment',
       success_url: `https://blackbarbiequotes.com/order-success?order-number=BQM-${order_number_generated}`,
-      // success_url: `${req.protocol}://${req.get(
-      //   'host'
-      // )}/order-success?order-number=BQM-${order_number_generated}`,
-      //
-      //   cancel_url: `${req.protocol}://${req.get('host')}/`,
       cancel_url: 'https://blackbarbiequotes.com/',
       // customer_email: res.locals.user.emailAddress,
       client_reference_id: client_ref_id,
@@ -281,6 +276,7 @@ const createOrder = async (session) => {
 };
 
 exports.stripeWH = async (req, res, next) => {
+  console.log("hit")
   const signature = req.headers['stripe-signature'];
   const endpointSecret = process.env.WH_SEC;
   let event;
@@ -292,7 +288,7 @@ exports.stripeWH = async (req, res, next) => {
     return;
   }
   if (event.type == 'checkout.session.completed') {
-    createOrder(event.data.object);
+   await createOrder(event.data.object);
   }
   res.status(200).json({ recieved: true });
 };
