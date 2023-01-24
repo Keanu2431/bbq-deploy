@@ -29,8 +29,8 @@ const orderRoute = require('./routes/ordersRoute');
 app.enable('trust proxy');
 app.use(express.static(path.join(__dirname, 'build')));
 app.use(cookieParser());
-app.use(cors({ credentials: true, origin: [process.env.CLIENT_BASE,process.env.CLIENT_BASE_WINDOWS] }));
-// app.use('*', limiter);
+app.use(cors({ credentials: true, origin:'https://blackbarbiequotes.com' }));
+app.use('*', limiter);
 app.use(morgan('dev'));
 
 app.post(
