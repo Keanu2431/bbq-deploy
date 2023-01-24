@@ -88,33 +88,7 @@ exports.getCheckout = async (req, res, next) => {
       totalAll = Number(String(totalAll) + '0') * 100 + 100;
     }
     // shipping setup
-    const ship_countries = ['US', 'CA', 'MX', 'GB'];
-    const ship_opt_arr = [
-      {
-        shipping_rate_data: {
-          tax_behavior: 'exclusive',
-          display_name: 'Standard',
-          type: 'fixed_amount',
-          delivery_estimate: {
-            maximum: { unit: 'day', value: 7 },
-            minimum: { unit: 'day', value: 5 },
-          },
-          fixed_amount: { amount: 5 * 100, currency: 'usd' },
-        },
-      },
-      {
-        shipping_rate_data: {
-          tax_behavior: 'exclusive',
-          display_name: 'Fast',
-          type: 'fixed_amount',
-          delivery_estimate: {
-            maximum: { unit: 'day', value: 3 },
-            minimum: { unit: 'day', value: 2 },
-          },
-          fixed_amount: { amount: 10 * 100, currency: 'usd' },
-        },
-      },
-    ];
+    const ship_countries = ['US'];
     // CREATING COUPON
 
     // const coupon = await stripe.coupons.create({
@@ -157,9 +131,6 @@ exports.getCheckout = async (req, res, next) => {
       phone_number_collection: {
         enabled: true,
       },
-      shipping_options: ship_opt_arr,
-      //   customer: currUser.stripeID,
-      // payment_intent: paymentIntent.id,
       payment_intent_data: { setup_future_usage: 'on_session' },
       metadata: {
         user_DB_KEY: user.sessionKey,
