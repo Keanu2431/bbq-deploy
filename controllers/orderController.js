@@ -124,9 +124,9 @@ exports.getCheckout = async (req, res, next) => {
       line_items: checkout_line_items,
       shipping_address_collection: { allowed_countries: ship_countries },
       billing_address_collection: 'required',
-      // automatic_tax: {
-      //   enabled: true,
-      // },
+      automatic_tax: {
+        enabled: true,
+      },
       allow_promotion_codes: true,
       phone_number_collection: {
         enabled: true,
