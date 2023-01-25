@@ -136,7 +136,9 @@ exports.getCheckout = async (req, res, next) => {
         user_DB_KEY: user.sessionKey,
         order_number: `BQM-${order_number_generated}`,
         all_items: JSON.stringify(itemData),
-      },
+      },consent_collection:{
+        terms_of_service:'required'
+      }
     });
     // send session as res
     console.log('hit end');
