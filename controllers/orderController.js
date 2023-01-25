@@ -35,26 +35,26 @@ exports.getCheckout = async (req, res, next) => {
     let totalAll = subTotal + taxAdd;
 
     // tax rates to plug into stripe
-    const tax_rate__stripe_NY = await stripe.taxRates.create({
-      display_name: 'Sales Tax',
-      inclusive: false,
-      percentage: 8.875,
-      country: 'US',
-      state: 'NY',
-      jurisdiction: 'US - NY',
-      description: 'NY Sales Tax',
-      tax_type: 'sales_tax',
-    });
-    const tax_rate__stripe_CA = await stripe.taxRates.create({
-      display_name: 'Sales Tax',
-      inclusive: false,
-      percentage: 7.25,
-      country: 'US',
-      state: 'CA',
-      jurisdiction: 'US - CA',
-      description: 'CA Sales Tax',
-      tax_type: 'sales_tax',
-    });
+    // const tax_rate__stripe_NY = await stripe.taxRates.create({
+    //   display_name: 'Sales Tax',
+    //   inclusive: false,
+    //   percentage: 8.875,
+    //   country: 'US',
+    //   state: 'NY',
+    //   jurisdiction: 'US - NY',
+    //   description: 'NY Sales Tax',
+    //   tax_type: 'sales_tax',
+    // });
+    // const tax_rate__stripe_CA = await stripe.taxRates.create({
+    //   display_name: 'Sales Tax',
+    //   inclusive: false,
+    //   percentage: 7.25,
+    //   country: 'US',
+    //   state: 'CA',
+    //   jurisdiction: 'US - CA',
+    //   description: 'CA Sales Tax',
+    //   tax_type: 'sales_tax',
+    // });
     // checkout line
     const checkout_line_items = stripeCart.map((el) => ({
       price_data: {
@@ -75,7 +75,7 @@ exports.getCheckout = async (req, res, next) => {
       // },
       quantity: el.quantity,
       // dynamic_tax_rates: [],
-      dynamic_tax_rates: [tax_rate__stripe_CA.id, tax_rate__stripe_NY.id],
+      // dynamic_tax_rates: [tax_rate__stripe_CA.id, tax_rate__stripe_NY.id],
       // tax_rates: [tax_rate__stripe.id],
     }));
     const itemData = stripeCart.map((el) => [el.productSKU, el.quantity]);
